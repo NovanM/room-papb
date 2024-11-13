@@ -22,7 +22,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 /**
- * Database class with a singleton Instance object.
+ * Kelas `InventoryDatabase` ini merupakan kelas database Room yang dikelola sebagai singleton.
+ * Singleton memastikan hanya ada satu instance `InventoryDatabase` yang aktif di seluruh aplikasi,
+ * sehingga menghemat penggunaan memori dan mencegah konflik data.
  */
 @Database(entities = [Item::class], version = 1, exportSchema = false)
 abstract class InventoryDatabase : RoomDatabase() {
@@ -42,7 +44,14 @@ abstract class InventoryDatabase : RoomDatabase() {
                      * permanently deletes all data from the tables in your database when it
                      * attempts to perform a migration with no defined migration path.
                      */
+
                     .fallbackToDestructiveMigration()
+                    /**
+                     * Menggunakan `fallbackToDestructiveMigration()` berarti Room akan menghapus
+                     * semua data di tabel jika database membutuhkan migrasi tetapi tidak ada jalur
+                     * migrasi yang didefinisikan. Ini berguna saat perubahan versi memerlukan
+                     * pembersihan database karena skema yang berubah.
+                     */
                     .build()
                     .also { Instance = it }
             }

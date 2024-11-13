@@ -17,7 +17,12 @@
 package com.example.inventory.data
 
 import kotlinx.coroutines.flow.Flow
-
+/**
+ * Kelas `OfflineItemsRepository` mengimplementasikan `ItemsRepository` dan menyediakan
+ * operasi CRUD untuk data `Item` menggunakan objek `itemDao` sebagai sumber data offline,
+ * yaitu database Room. Implementasi ini memastikan bahwa operasi dilakukan langsung pada
+ * database lokal yang dikelola oleh `itemDao`.
+ */
 class OfflineItemsRepository(private val itemDao: ItemDao) : ItemsRepository {
     override fun getAllItemsStream(): Flow<List<Item>> = itemDao.getAllItems()
 

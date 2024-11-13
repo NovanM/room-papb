@@ -21,6 +21,19 @@ import androidx.room.PrimaryKey
 
 /**
  * Entity data class represents a single row in the database.
+ * * - Memberikan identitas bahwa kelas ini adalah entitas dalam database Room.
+ *  * - Parameter `tableName = "items"` menunjukkan bahwa tabel ini diberi nama `items`.
+ *  *
+ *  * Kolom dan Primary Key:
+ *  * - `id`: Kolom ini digunakan sebagai primary key dalam tabel. Anotasi `@PrimaryKey`
+ *  *   dengan `autoGenerate = true` berarti Room akan secara otomatis men-generate nilai unik
+ *  *   untuk kolom ini, yang berguna saat data baru disimpan.
+ *  * - `name`: Nama dari item, ditetapkan sebagai kolom string. Tidak ada anotasi khusus,
+ *  *   yang menunjukkan ini sebagai kolom biasa.
+ *  * - `price`: Menyimpan harga item dalam bentuk `Double`. Kolom ini menyimpan informasi
+ *  *   numerik yang terkait dengan harga setiap item.
+ *  * - `quantity`: Menyimpan jumlah item yang tersedia, dalam bentuk `Int`. Kolom ini dapat
+ *  *   digunakan untuk melacak stok atau jumlah barang dalam inventaris.
  */
 @Entity(tableName = "items")
 data class Item(

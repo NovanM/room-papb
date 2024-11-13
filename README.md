@@ -1,6 +1,6 @@
-Inventory app
+Inventory app-PAPB(2024)
 ==================================
-
+Project tugas PAPB 2024
 Solution code for Android Basics with Compose.
 
 Introduction

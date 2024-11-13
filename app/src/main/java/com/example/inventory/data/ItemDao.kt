@@ -25,7 +25,9 @@ import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
 /**
- * Database access object to access the Inventory database
+ * Interface `ItemDao` ini berfungsi sebagai Database Access Object (DAO)
+ * untuk mengakses database Inventory, menyediakan metode CRUD (Create, Read,
+ * Update, Delete) untuk mengelola data pada tabel `items`.
  */
 @Dao
 interface ItemDao {

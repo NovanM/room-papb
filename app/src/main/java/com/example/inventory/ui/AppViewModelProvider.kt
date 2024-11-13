@@ -27,25 +27,29 @@ import com.example.inventory.ui.home.HomeViewModel
 import com.example.inventory.ui.item.ItemDetailsViewModel
 import com.example.inventory.ui.item.ItemEditViewModel
 import com.example.inventory.ui.item.ItemEntryViewModel
-
 /**
- * Provides Factory to create instance of ViewModel for the entire Inventory app
+ * `AppViewModelProvider` menyediakan factory untuk membuat instance `ViewModel`
+ * untuk seluruh aplikasi Inventory. Dengan menggunakan `viewModelFactory`,
+ * `AppViewModelProvider` menyediakan cara untuk menginisialisasi berbagai `ViewModel`
+ * yang digunakan dalam aplikasi.
  */
 object AppViewModelProvider {
     val Factory = viewModelFactory {
-        // Initializer for ItemEditViewModel
+        // Initializer untuk `ItemEditViewModel`, yang membutuhkan SavedStateHandle
+        // dan repository item yang diakses dari aplikasi.
         initializer {
             ItemEditViewModel(
                 this.createSavedStateHandle(),
                 inventoryApplication().container.itemsRepository
             )
         }
-        // Initializer for ItemEntryViewModel
+        // Initializer untuk `ItemEntryViewModel`, yang mengakses repository item dari aplikasi.
         initializer {
             ItemEntryViewModel(inventoryApplication().container.itemsRepository)
         }
 
-        // Initializer for ItemDetailsViewModel
+        // Initializer untuk `ItemDetailsViewModel`, yang juga membutuhkan SavedStateHandle
+        // dan repository item.
         initializer {
             ItemDetailsViewModel(
                 this.createSavedStateHandle(),
@@ -53,7 +57,7 @@ object AppViewModelProvider {
             )
         }
 
-        // Initializer for HomeViewModel
+        // Initializer untuk `HomeViewModel`, yang mengakses repository item dari aplikasi.
         initializer {
             HomeViewModel(inventoryApplication().container.itemsRepository)
         }
@@ -61,8 +65,9 @@ object AppViewModelProvider {
 }
 
 /**
- * Extension function to queries for [Application] object and returns an instance of
- * [InventoryApplication].
+ * Fungsi ekstensi untuk mendapatkan objek [Application] dan mengonversinya menjadi
+ * instance dari [InventoryApplication], yang digunakan untuk mengakses container
+ * dan dependensi aplikasi lainnya.
  */
 fun CreationExtras.inventoryApplication(): InventoryApplication =
     (this[AndroidViewModelFactory.APPLICATION_KEY] as InventoryApplication)
